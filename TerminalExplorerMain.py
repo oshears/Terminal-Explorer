@@ -9,11 +9,10 @@ def main(scale=1):
 
 	boxes=SqrObjectification(3,6,3,6)
 	moarBoxes=StarObjectification(22,36,25,39,"Bushes","green")
-	#SqrObjectification(9,14,3,14)
 	bushes=StarObjectification(2,6,15,19,"Bushes","green")
 
 
-	somebody=[NPC(x=7,y=7),NPC(x=8,y=8),NPC(x=4,y=10),NPC(x=0,y=14)]
+	somebody=[NPC(x=7,y=7),NPC(x=8,y=8),NPC(x=4,y=10),NPC(x=0,y=14),NPC(x=47,y=37),NPC(x=58,y=18),NPC(x=34,y=30),NPC(x=40,y=24)]
 
 
 	map=Map(p1,boxes,moarBoxes,bushes,somebody,xscale=1,yscale=1,max_row=40, max_col=60)
