@@ -25,9 +25,9 @@ class Player:
 					if subItems.x==self.x and subItems.y==self.y and self.encounter==False:
 						self.encounter=True
 			else:
-				if self.x+x==item.x and self.y==item.y and item.solid and subItems.type=="Object":
+				if self.x+x==item.x and self.y==item.y and item.solid and item.type=="Object":
 					return
-				elif self.y+y==item.y and self.x==item.x and item.solid and subItems.type=="Object":
+				elif self.y+y==item.y and self.x==item.x and item.solid and item.type=="Object":
 					return
 				if item.x==self.x and item.y==self.y and self.encounter==False:
 					self.encounter=True
