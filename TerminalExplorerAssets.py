@@ -18,16 +18,16 @@ class Player:
 		for item in objects:
 			if (str(type(item))=="<class 'list'>"):
 				for subItems in item:
-					if self.x+x==subItems.x and self.y==subItems.y and subItems.solid:
+					if self.x+x==subItems.x and self.y==subItems.y and subItems.solid and subItems.type=="Object":
 						return
-					elif self.y+y==subItems.y and self.x==subItems.x and subItems.solid:
+					elif self.y+y==subItems.y and self.x==subItems.x and subItems.solid and subItems.type=="Object":
 						return
 					if subItems.x==self.x and subItems.y==self.y and self.encounter==False:
 						self.encounter=True
 			else:
-				if self.x+x==item.x and self.y==item.y and item.solid:
+				if self.x+x==item.x and self.y==item.y and item.solid and subItems.type=="Object":
 					return
-				elif self.y+y==item.y and self.x==item.x and item.solid:
+				elif self.y+y==item.y and self.x==item.x and item.solid and subItems.type=="Object":
 					return
 				if item.x==self.x and item.y==self.y and self.encounter==False:
 					self.encounter=True
