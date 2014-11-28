@@ -9,35 +9,36 @@ def main(scale=1):
 
 	boxes=SqrObjectification(3,6,3,6)
 	moarBoxes=SqrObjectification(9,14,3,14)
+	bushes=SqrObjectification(0,19,18,19,"Bushes","green")
 
 
 	somebody=[NPC(x=7,y=7),NPC(x=8,y=8),NPC(x=4,y=10),NPC(x=0,y=14)]
 
 
-	map=Map(p1,boxes,moarBoxes,somebody,xscale=3,yscale=3,max_row=5, max_col=5)
+	map=Map(p1,boxes,moarBoxes,somebody,xscale=1,yscale=1,max_row=20, max_col=20)
 
 	while(userInput!="quit"):
 
-		userInput=input("What do you do? ")
+		#userInput=input("What do you do? ")
 
 		if userInput=="up" or userInput=="w":
-			p1.move(map.bounds,0,-1,boxes,moarBoxes,somebody)
+			p1.move(map.bounds,0,-1,boxes,moarBoxes,bushes,somebody)
 		elif userInput=="down" or userInput=="s":
-			p1.move(map.bounds,0,1,boxes,moarBoxes,somebody)
+			p1.move(map.bounds,0,1,boxes,moarBoxes,bushes,somebody)
 		elif userInput=="left" or userInput=="a":
-			p1.move(map.bounds,-1,0,boxes,moarBoxes,somebody)
+			p1.move(map.bounds,-1,0,boxes,moarBoxes,bushes,somebody)
 		elif userInput=="right" or userInput=="d":
-			p1.move(map.bounds,1,0,boxes,moarBoxes,somebody)
+			p1.move(map.bounds,1,0,boxes,moarBoxes,bushes,somebody)
 		elif userInput=="quit":
 			quit()
 
 
 		for someone in somebody:
-			someone.move(map.bounds,p1,boxes,moarBoxes)
+			someone.move(map.bounds,p1,boxes,moarBoxes,bushes)
 
 
 
-		map.update(p1,boxes,moarBoxes,somebody)
+		map.update(p1,boxes,moarBoxes,bushes,somebody)
 		map.display()
 
 		for someone in somebody:

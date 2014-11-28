@@ -1,5 +1,6 @@
 from os import system
 import TerminalExplorerAIs
+from TerminalExplorerUtilities import colorify
 
 class Player:
 
@@ -53,7 +54,7 @@ class Player:
 
 	def updateRelate(self,*objects):
 		self.relate=TerminalExplorerAIs.makeRelate(self,*objects)
-		print(self.name)
+		print(self,":",self.name)
 		for key in self.relate.keys():
 			print(key,self.relate[key])
 
@@ -68,7 +69,7 @@ class Map:
 		for y in range(self.bounds[0]):
 			tempList=[]
 			for x in range(self.bounds[1]):
-				tempList.append(["X"])
+				tempList.append([colorify("X","black")])
 			self.positions.append(tempList)
 
 		print(self.bounds)
@@ -77,18 +78,18 @@ class Map:
 			if (str(type(item))=="<class 'list'>"):
 				for subItems in item:
 					if subItems.type=="Player":
-						self.positions[subItems.y][item.x]=["\x1b[46m\x1b[36m@\x1b[0m"]
+						self.positions[subItems.y][item.x]=[colorify("@","cyan")]
 					if subItems.type=="Object":
-						self.positions[subItems.y][subItems.x]=["\x1b[31m\x1b[41m+\x1b[0m"]
+						self.positions[subItems.y][subItems.x]=[colorify("+",subItems.color)]
 					elif subItems.type=="NPC":
-						self.positions[subItems.y][subItems.x]=["\x1b[32m\x1b[42m$\x1b[0m"]
+						self.positions[subItems.y][subItems.x]=[colorify("$","yellow")]
 			else:
 				if item.type=="Player":
-					self.positions[item.y][item.x]=["\x1b[46m\x1b[36m@\x1b[0m"]
+					self.positions[item.y][item.x]=[colorify("@","cyan")]
 				if item.type=="Object":
-					self.positions[item.y][item.x]=["\x1b[31m\x1b[41m+\x1b[0m"]
+					self.positions[item.y][item.x]=[colorify("+",item.color)]
 				elif item.type=="NPC":
-					self.positions[item.y][item.x]=["\x1b[32m\x1b[42m$\x1b[0m"]
+					self.positions[item.y][item.x]=[colorify("$","yellow")]
 
 		#self.positions[player.y][player.x]=["\x1b[31m@\x1b[0m"]
 		self.display()
@@ -104,34 +105,34 @@ class Map:
 							if subItems.x == col and subItems.y==row:
 								reserved_locations.append((row,col))
 								if subItems.type=="Player":
-									self.positions[row][col]=["\x1b[46m\x1b[36m@\x1b[0m"]
+									self.positions[row][col]=[colorify("@","cyan")]
 									#for y in range(self.yscale):
 										#for x in range(self.xscale):
 											#self.positions[row+y][col+x]=["\x1b[46m\x1b[36m@\x1b[0m"]
 											#reserved_locations.append((row+y,col+x))
 								elif subItems.type=="Object":
-									self.positions[row][col]=["\x1b[41m\x1b[31m+\x1b[0m"]
+									self.positions[row][col]=[colorify("+",subItems.color)]
 								elif subItems.type=="NPC":
-									self.positions[row][col]=["\x1b[42m\x1b[32m$\x1b[0m"]
+									self.positions[row][col]=[colorify("$","yellow")]
 							elif (row,col) not in reserved_locations:
-								self.positions[row][col]=["X"]
+								self.positions[row][col]=[colorify("X","black")]
 			else:
 				for row in range(self.bounds[0]):
 					for col in range(self.bounds[1]):
 						if item.x == col and item.y==row:
 							reserved_locations.append((row,col))
 							if item.type=="Player":
-								self.positions[row][col]=["\x1b[46m\x1b[36m@\x1b[0m"]
+								self.positions[row][col]=[colorify("@","cyan")]
 								#for y in range(self.yscale):
 									#for x in range(self.xscale):
 										#self.positions[row+y][col+x]=["\x1b[46m\x1b[36m@\x1b[0m"]
 										#reserved_locations.append((row+y,col+x))
 							elif item.type=="Object":
-								self.positions[row][col]=["\x1b[41m\x1b[31m+\x1b[0m"]
+								self.positions[row][col]=[colorify("+",item.color)]
 							elif item.type=="NPC":
-								self.positions[row][col]=["\x1b[42m\x1b[32m$\x1b[0m"]
+								self.positions[row][col]=[colorify("$","yellow")]
 						elif (row,col) not in reserved_locations:
-							self.positions[row][col]=["X"]
+							self.positions[row][col]=[colorify("X","black")]
 
 
 	def display(self):
@@ -160,17 +161,18 @@ class NPC:
 
 	def updateRelate(self,*objects):
 		self.relate=TerminalExplorerAIs.makeRelate(self,*objects)
-		print(self.name)
+		print(self,":",self.name)
 		for key in self.relate.keys():
 			print(key,self.relate[key])
 
 
 class Object:
-	def __init__(self,name="An Object",x=0,y=0,solid=True):
+	def __init__(self,name="An Object",x=0,y=0,solid=True,color="red"):
 		self.x=x
 		self.y=y
 		self.type="Object"
 		self.name=name
 		self.solid=True
+		self.color=color
 
 
