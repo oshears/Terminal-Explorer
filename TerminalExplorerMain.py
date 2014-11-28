@@ -11,7 +11,7 @@ def main(scale=1):
 	moarBoxes=SqrObjectification(9,14,3,14)
 
 
-	somebody=[NPC(x=7,y=7),NPC(x=8,y=8),NPC(x=0,y=14),NPC(x=0,y=14),NPC(x=0,y=14),NPC(x=0,y=14)]
+	somebody=[NPC(x=7,y=7),NPC(x=8,y=8),NPC(x=4,y=10),NPC(x=0,y=14)]
 
 
 	map=Map(p1,boxes,moarBoxes,somebody,xscale=3,yscale=3,max_row=5, max_col=5)
