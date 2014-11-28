@@ -7,12 +7,10 @@ def main(scale=1):
 
 	p1=Player(0,0)
 
-	boxes=[]
-	for x in range(5):
-		boxes.append(Object("Box",3,3+x))
+	boxes=SqrObjectification(3,6,3,6)
 
 
-	somebody=NPC(4,4)
+	somebody=NPC(7,7)
 
 
 	map=Map(p1,boxes,somebody,xscale=3,yscale=3,max_row=5, max_col=5)

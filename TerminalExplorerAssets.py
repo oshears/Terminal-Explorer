@@ -137,6 +137,7 @@ class NPC:
 		self.type="NPC"
 		self.name=name
 		self.behavior=behavior
+		self.solid=True
 
 	def move(self,bounds,*objects):
 		TerminalExplorerAIs.movement(self,bounds,objects)
