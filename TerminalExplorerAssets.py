@@ -54,9 +54,9 @@ class Player:
 
 	def updateRelate(self,*objects):
 		self.relate=TerminalExplorerAIs.makeRelate(self,*objects)
-		print(self,":",self.name)
-		for key in self.relate.keys():
-			print(key,self.relate[key])
+		#print(self,":",self.name)
+		#for key in self.relate.keys():
+			#print(key,self.relate[key])
 
 
 class Map:
@@ -161,9 +161,9 @@ class NPC:
 
 	def updateRelate(self,*objects):
 		self.relate=TerminalExplorerAIs.makeRelate(self,*objects)
-		print(self,":",self.name)
-		for key in self.relate.keys():
-			print(key,self.relate[key])
+		#print(self,":",self.name)
+		#for key in self.relate.keys():
+			#print(key,self.relate[key])
 
 
 class Object:
