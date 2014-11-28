@@ -1,5 +1,5 @@
 from TerminalExplorerAssets import (Player,Map,NPC,Object)
-from TerminalExplorerObjectGen import SqrObjectification
+from TerminalExplorerObjectGen import SqrObjectification,CirObjectification
 
 
 def main(scale=1):
@@ -8,14 +8,15 @@ def main(scale=1):
 	p1=Player(0,0)
 
 	boxes=SqrObjectification(3,6,3,6)
-	moarBoxes=SqrObjectification(9,14,3,14)
-	bushes=SqrObjectification(0,19,18,19,"Bushes","green")
+	moarBoxes=CirObjectification(9,15,9,15)
+	#SqrObjectification(9,14,3,14)
+	bushes=CirObjectification(2,6,15,19,"Bushes","green")
 
 
 	somebody=[NPC(x=7,y=7),NPC(x=8,y=8),NPC(x=4,y=10),NPC(x=0,y=14)]
 
 
-	map=Map(p1,boxes,moarBoxes,somebody,xscale=1,yscale=1,max_row=20, max_col=20)
+	map=Map(p1,boxes,moarBoxes,bushes,somebody,xscale=1,yscale=1,max_row=20, max_col=20)
 
 	while(userInput!="quit"):
 
