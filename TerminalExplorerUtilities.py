@@ -23,17 +23,17 @@ def colorify(item,color):
 
 	if color=="black":
 		return "%s%s%s%s"%(colors.BLACK,colors.BLACKBG,item,colors.NOCOL)
-	if color=="red":
+	elif color=="red":
 		return "%s%s%s%s"%(colors.RED,colors.REDBG,item,colors.NOCOL)
-	if color=="green":
+	elif color=="green":
 		return "%s%s%s%s"%(colors.GREEN,colors.GREENBG,item,colors.NOCOL)
-	if color=="yellow":
+	elif color=="yellow":
 		return "%s%s%s%s"%(colors.YELLOW,colors.YELLOWBG,item,colors.NOCOL)
-	if color=="blue":
+	elif color=="blue":
 		return "%s%s%s%s"%(colors.BLUE,colors.BLUEBG,item,colors.NOCOL)
-	if color=="magenta":
+	elif color=="magenta":
 		return "%s%s%s%s"%(colors.MAGENTA,colors.MAGENTABG,item,colors.NOCOL)
-	if color=="cyan":
+	elif color=="cyan":
 		return "%s%s%s%s"%(colors.CYAN,colors.CYANBG,item,colors.NOCOL)
-	if color=="white":
+	elif color=="white":
 		return "%s%s%s%s"%(colors.WHITE,colors.WHITEBG,item,colors.NOCOL)

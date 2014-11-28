@@ -68,50 +68,50 @@ def findNearby(self,*objects):
 				if (self.x+1==subItems.x and self.y==subItems.y):
 					self.nearby.append(subItems)
 				#Left
-				if (self.x-1==subItems.x and self.y==subItems.y):
+				elif (self.x-1==subItems.x and self.y==subItems.y):
 					self.nearby.append(subItems)
 				#Bottom Right
-				if (self.x+1==subItems.x and self.y+1==subItems.y):
+				elif (self.x+1==subItems.x and self.y+1==subItems.y):
 					self.nearby.append(subItems)
 				#Bottom
-				if (self.x==subItems.x and self.y+1==subItems.y):
+				elif (self.x==subItems.x and self.y+1==subItems.y):
 					self.nearby.append(subItems)
 				#Top Left
-				if (self.x-1==subItems.x and self.y-1==subItems.y):
+				elif (self.x-1==subItems.x and self.y-1==subItems.y):
 					self.nearby.append(subItems)
 				#Top
-				if (self.x==subItems.x and self.y-1==subItems.y):
+				elif (self.x==subItems.x and self.y-1==subItems.y):
 					self.nearby.append(subItems)
 				#Bottom Left
-				if (self.x-1==subItems.x and self.y+1==subItems.y):
+				elif (self.x-1==subItems.x and self.y+1==subItems.y):
 					self.nearby.append(subItems)
 				#Top Right
-				if (self.x+1==subItems.x and self.y-1==subItems.y):
+				elif (self.x+1==subItems.x and self.y-1==subItems.y):
 					self.nearby.append(subItems)
 		else:
 			#Right
 			if (self.x+1==item.x and self.y==item.y):
 				self.nearby.append(item)
 			#Left
-			if (self.x-1==item.x and self.y==item.y):
+			elif (self.x-1==item.x and self.y==item.y):
 				self.nearby.append(item)
 			#Bottom Right
-			if (self.x+1==item.x and self.y+1==item.y):
+			elif (self.x+1==item.x and self.y+1==item.y):
 				self.nearby.append(item)
 			#Bottom
-			if (self.x==item.x and self.y+1==item.y):
+			elif (self.x==item.x and self.y+1==item.y):
 				self.nearby.append(item)
 			#Top Left
-			if (self.x-1==item.x and self.y-1==item.y):
+			elif (self.x-1==item.x and self.y-1==item.y):
 				self.nearby.append(item)
 			#Top
-			if (self.x==item.x and self.y-1==item.y):
+			elif (self.x==item.x and self.y-1==item.y):
 				self.nearby.append(item)
 			#Bottom Left
-			if (self.x-1==item.x and self.y+1==item.y):
+			elif (self.x-1==item.x and self.y+1==item.y):
 				self.nearby.append(item)
 			#Top Right
-			if (self.x+1==item.x and self.y-1==item.y):
+			elif (self.x+1==item.x and self.y-1==item.y):
 				self.nearby.append(item)
 	return self.nearby
 

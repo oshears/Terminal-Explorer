@@ -25,7 +25,7 @@ class Player:
 						return
 					elif self.y+y==subItems.y and self.x==subItems.x and subItems.solid and subItems.type=="Object":
 						return
-					if subItems.x==self.x and subItems.y==self.y and self.encounter==False:
+					elif subItems.x==self.x and subItems.y==self.y and self.encounter==False:
 						self.encounter=True
 
 			else:
@@ -33,7 +33,7 @@ class Player:
 					return
 				elif self.y+y==item.y and self.x==item.x and item.solid and item.type=="Object":
 					return
-				if item.x==self.x and item.y==self.y and self.encounter==False:
+				elif item.x==self.x and item.y==self.y and self.encounter==False:
 					self.encounter=True
 
 		if self.x!=0 and self.x!=bounds[1]-1:
@@ -79,14 +79,14 @@ class Map:
 				for subItems in item:
 					if subItems.type=="Player":
 						self.positions[subItems.y][item.x]=[colorify("@","cyan")]
-					if subItems.type=="Object":
+					elif subItems.type=="Object":
 						self.positions[subItems.y][subItems.x]=[colorify("+",subItems.color)]
 					elif subItems.type=="NPC":
 						self.positions[subItems.y][subItems.x]=[colorify("$","yellow")]
 			else:
 				if item.type=="Player":
 					self.positions[item.y][item.x]=[colorify("@","cyan")]
-				if item.type=="Object":
+				elif item.type=="Object":
 					self.positions[item.y][item.x]=[colorify("+",item.color)]
 				elif item.type=="NPC":
 					self.positions[item.y][item.x]=[colorify("$","yellow")]
