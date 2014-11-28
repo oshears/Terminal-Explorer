@@ -1,4 +1,5 @@
 from random import randrange
+from os import system
 
 def movement(self,bounds,objects):
 
@@ -56,3 +57,77 @@ def movement(self,bounds,objects):
 						self.y+=yMove
 					if self.y==bounds[0]-1 and yMove<0:
 						self.y+=yMove
+
+
+def findNearby(self,*objects):
+	self.nearby=[]
+	for item in objects:
+		if (str(type(item))=="<class 'list'>"):
+			for subItems in item:
+				#Right
+				if (self.x+1==subItems.x and self.y==subItems.y):
+					self.nearby.append(subItems)
+				#Left
+				if (self.x-1==subItems.x and self.y==subItems.y):
+					self.nearby.append(subItems)
+				#Bottom Right
+				if (self.x+1==subItems.x and self.y+1==subItems.y):
+					self.nearby.append(subItems)
+				#Bottom
+				if (self.x==subItems.x and self.y+1==subItems.y):
+					self.nearby.append(subItems)
+				#Top Left
+				if (self.x-1==subItems.x and self.y-1==subItems.y):
+					self.nearby.append(subItems)
+				#Top
+				if (self.x==subItems.x and self.y-1==subItems.y):
+					self.nearby.append(subItems)
+				#Bottom Left
+				if (self.x-1==subItems.x and self.y+1==subItems.y):
+					self.nearby.append(subItems)
+				#Top Right
+				if (self.x+1==subItems.x and self.y-1==subItems.y):
+					self.nearby.append(subItems)
+		else:
+			#Right
+			if (self.x+1==item.x and self.y==item.y):
+				self.nearby.append(item)
+			#Left
+			if (self.x-1==item.x and self.y==item.y):
+				self.nearby.append(item)
+			#Bottom Right
+			if (self.x+1==item.x and self.y+1==item.y):
+				self.nearby.append(item)
+			#Bottom
+			if (self.x==item.x and self.y+1==item.y):
+				self.nearby.append(item)
+			#Top Left
+			if (self.x-1==item.x and self.y-1==item.y):
+				self.nearby.append(item)
+			#Top
+			if (self.x==item.x and self.y-1==item.y):
+				self.nearby.append(item)
+			#Bottom Left
+			if (self.x-1==item.x and self.y+1==item.y):
+				self.nearby.append(item)
+			#Top Right
+			if (self.x+1==item.x and self.y-1==item.y):
+				self.nearby.append(item)
+	return self.nearby
+
+def makeRelate(self,*objects):
+	for item in objects:
+		if (str(type(item))=="<class 'list'>"):	
+			for subItems in item:
+				if subItems in self.nearby:
+					if subItems in self.relate:
+						self.relate[subItems]+=1
+					else:
+						self.relate.update({subItems:1})
+		else:
+			if item in self.nearby:
+				if item in self.relate:
+					self.relate[item]+=1
+				else:
+					self.relate.update({item:1})
+	return self.relate

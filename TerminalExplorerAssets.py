@@ -11,6 +11,7 @@ class Player:
 		self.name=name
 		self.encounter=False
 		self.nearby=[]
+		self.relate={}
 
 
 	def move(self,bounds,x=0,y=0,*objects):
@@ -47,61 +48,11 @@ class Player:
 		if self.x==bounds[1]-1 and x<0:
 			self.x+=x
 
-	def nearby(self,*objects):
-		self.nearby=[]
-		for item in objects:
-			if (str(type(item))=="<class 'list'>"):
-				for subItems in item:
-					#Right
-					if (self.x+1==subItems.x and self.y==subItems.y):
-						self.nearby.append((subItems.name,x,y))
-					#Left
-					if (self.x-1==subItems.x and self.y==subItems.y):
-						self.nearby.append((subItems.name,x,y))
-					#Bottom Right
-					if (self.x+1==subItems.x and self.y+1==subItems.y):
-						self.nearby.append((subItems.name,x,y))
-					#Bottom
-					if (self.x==subItems.x and self.y+1==subItems.y):
-						self.nearby.append((subItems.name,x,y))
-					#Top Left
-					if (self.x-1==subItems.x and self.y-1==subItems.y):
-						self.nearby.append((subItems.name,x,y))
-					#Top
-					if (self.x==subItems.x and self.y-1==subItems.y):
-						self.nearby.append((subItems.name,x,y))
-					#Bottom Left
-					if (self.x-1==subItems.x and self.y+1==subItems.y):
-						self.nearby.append((subItems.name,x,y))
-					#Top Right
-					if (self.x+1==subItems.x and self.y-1==subItems.y):
-						self.nearby.append((subItems.name,x,y))
-			else:
-				#Right
-				if (self.x+1==item.x and self.y==item.y):
-					self.nearby.append((item.name,x,y))
-				#Left
-				if (self.x-1==item.x and self.y==item.y):
-					self.nearby.append((item.name,x,y))
-				#Bottom Right
-				if (self.x+1==item.x and self.y+1==item.y):
-					self.nearby.append((item.name,x,y))
-				#Bottom
-				if (self.x==item.x and self.y+1==item.y):
-					self.nearby.append((item.name,x,y))
-				#Top Left
-				if (self.x-1==item.x and self.y-1==item.y):
-					self.nearby.append((item.name,x,y))
-				#Top
-				if (self.x==item.x and self.y-1==item.y):
-					self.nearby.append((item.name,x,y))
-				#Bottom Left
-				if (self.x-1==item.x and self.y+1==item.y):
-					self.nearby.append((item.name,x,y))
-				#Top Right
-				if (self.x+1==item.x and self.y-1==item.y):
-					self.nearby.append((item.name,x,y))
-		print(self.nearby)
+	def updateNearby(self,*objects):
+		self.nearby=TerminalExplorerAIs.findNearby(self,*objects)
+
+	def updateRelate(self,*objects):
+		self.relate=TerminalExplorerAIs.makeRelate(self,*objects)
 
 
 class Map:
@@ -195,9 +146,17 @@ class NPC:
 		self.name=name
 		self.behavior=behavior
 		self.solid=True
+		self.nearby=[]
+		self.relate={}
 
 	def move(self,bounds,*objects):
 		TerminalExplorerAIs.movement(self,bounds,objects)
+
+	def updateNearby(self,*objects):
+		self.nearby=TerminalExplorerAIs.findNearby(self,*objects)
+
+	def updateRelate(self,*objects):
+		self.relate=TerminalExplorerAIs.makeRelate(self,*objects)
 
 
 class Object:
