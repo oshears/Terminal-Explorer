@@ -82,14 +82,14 @@ class Map:
 					elif subItems.type=="Object":
 						self.positions[subItems.y][subItems.x]=[colorify("+",subItems.color)]
 					elif subItems.type=="NPC":
-						self.positions[subItems.y][subItems.x]=[colorify("$","yellow")]
+						self.positions[subItems.y][subItems.x]=[colorify("$",subItems.color)]
 			else:
 				if item.type=="Player":
 					self.positions[item.y][item.x]=[colorify("@","cyan")]
 				elif item.type=="Object":
 					self.positions[item.y][item.x]=[colorify("+",item.color)]
 				elif item.type=="NPC":
-					self.positions[item.y][item.x]=[colorify("$","yellow")]
+					self.positions[item.y][item.x]=[colorify("$",item.color)]
 
 		#self.positions[player.y][player.x]=["\x1b[31m@\x1b[0m"]
 		self.display()
@@ -113,7 +113,7 @@ class Map:
 								elif subItems.type=="Object":
 									self.positions[row][col]=[colorify("+",subItems.color)]
 								elif subItems.type=="NPC":
-									self.positions[row][col]=[colorify("$","yellow")]
+									self.positions[row][col]=[colorify("$",subItems.color)]
 							elif (row,col) not in reserved_locations:
 								self.positions[row][col]=[colorify("X","black")]
 			else:
@@ -130,7 +130,7 @@ class Map:
 							elif item.type=="Object":
 								self.positions[row][col]=[colorify("+",item.color)]
 							elif item.type=="NPC":
-								self.positions[row][col]=[colorify("$","yellow")]
+								self.positions[row][col]=[colorify("$",item.color)]
 						elif (row,col) not in reserved_locations:
 							self.positions[row][col]=[colorify("X","black")]
 
@@ -143,7 +143,7 @@ class Map:
 			print()
 
 class NPC:
-	def __init__(self,name="An NPC",x=0,y=0,behavior="Wander"):
+	def __init__(self,name="An NPC",x=0,y=0,color="yellow",behavior="Wander",track=None):
 		self.x=x
 		self.y=y
 		self.type="NPC"
@@ -152,6 +152,8 @@ class NPC:
 		self.solid=True
 		self.nearby=[]
 		self.relate={}
+		self.track=track
+		self.color=color
 
 	def move(self,bounds,*objects):
 		TerminalExplorerAIs.movement(self,bounds,objects)
