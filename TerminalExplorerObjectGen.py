@@ -1,19 +1,19 @@
 from TerminalExplorerAssets import Object
 
-def SqrObjectification(startX,endX,startY,endY,whatisit="Something",color="red"):
+def SqrObjectification(startX,endX,startY,endY,whatisit="Something",color="red",solid=True):
 	listOfObjects=[]
 
 
 	for y in range(startY,endY+1):
 		for x in range(startX,endX+1):
-			listOfObjects.append(Object(whatisit,x=x,y=y,color=color))
+			listOfObjects.append(Object(whatisit,x=x,y=y,color=color,solid=solid))
 
 
 	return listOfObjects
 
 def StarObjectification (startX,endX,startY,endY,whatisit="Something",color="red"):
 	listOfObjects=[]
-	
+
 	xDif=endX-startX
 	yDif=endY-startY
 	count=-1
