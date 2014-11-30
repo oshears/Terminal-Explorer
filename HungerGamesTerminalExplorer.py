@@ -5,7 +5,7 @@ from TerminalExplorerObjectGen import SqrObjectification,StarObjectification
 def main():
 
 	centerbox=SqrObjectification(14,20,14,20,color="green")
-	obstruction=SqrObjectification(0,12,14,14,color="cyan",solid=False)
+	obstruction=SqrObjectification(0,12,14,14,color="green",solid=False)
 
 	contestants=[NPC(x=0,y=8),NPC(x=0,y=4),NPC(x=0,y=0),NPC(x=0,y=12),NPC(x=0,y=16),NPC(x=0,y=20),
 				NPC(x=4,y=0),NPC(x=8,y=0),NPC(x=12,y=0),NPC(x=16,y=0),NPC(x=20,y=0),

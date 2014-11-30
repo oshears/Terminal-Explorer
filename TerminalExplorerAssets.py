@@ -156,6 +156,7 @@ class NPC:
 		self.track=track
 		self.color=color
 		self.hp=hp
+		self.hostile=hostile
 
 	def move(self,bounds,*objects):
 		TerminalExplorerAIs.movement(self,bounds,objects)
@@ -169,6 +170,17 @@ class NPC:
 		#print(self,":",self.name)
 		#for key in self.relate.keys():
 			#print(key,self.relate[key])
+		if self.relate!={}:
+			if max(list(self.relate.values()))>=60 and not self.hostile:
+				self.color="blue"
+				print( colorify(self,self.color,True), colorify(max(list(self.relate.values())),self.color,True) )
+			elif max(list(self.relate.values()))>=40 and not self.hostile:
+				self.color="white"
+				print( colorify(self,self.color,True), colorify(max(list(self.relate.values())),self.color,True) )
+			elif max(list(self.relate.values()))>=20 and not self.hostile:
+				self.color="magenta"
+				print( colorify(self,self.color,True), colorify(max(list(self.relate.values())),self.color,True) )
+
 
 
 class Object:
