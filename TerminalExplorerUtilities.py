@@ -8,6 +8,16 @@ class colors:
 	CYAN = '\x1b[36m'
 	WHITE = '\x1b[37m'
 
+	#High Intensities
+	HIGH_BLACK='\x1b[90m'
+	HIGH_RED = '\x1b[91m'
+	HIGH_GREEN = '\x1b[92m'
+	HIGH_YELLOW = '\x1b[93m'
+	HIGH_BLUE = '\x1b[94m'
+	HIGH_MAGENTA = '\x1b[95m'
+	HIGH_CYAN = '\x1b[96m'
+	HIGH_WHITE = '\x1b[97m'
+
 	BOLDRED='\x1b[1m'
 
 	BLACKBG='\x1b[40m'
@@ -17,9 +27,27 @@ class colors:
 	BLUEBG = '\x1b[44m'
 	MAGENTABG = '\x1b[45m'
 	CYANBG = '\x1b[46m'
-	WHITEBG = '\x1b[47m'		
+	WHITEBG = '\x1b[47m'
+
+	#High Intensities
+	HIGH_BLACKBG='\x1b[100m'
+	HIGH_REDBG = '\x1b[101m'
+	HIGH_GREENBG = '\x1b[102m'
+	HIGH_YELLOWBG = '\x1b[103m'
+	HIGH_BLUEBG = '\x1b[104m'
+	HIGH_MAGENTABG = '\x1b[105m'
+	HIGH_CYANBG = '\x1b[106m'
+	HIGH_WHITEBG = '\x1b[107m'		
 	
 	NOCOL = '\x1b[0m'
+
+	
+	#Color Wheel
+
+	#Foreground
+	#for x in range(255):
+	    #print("\033[38;5;%smOk%s\033[0;00m"%(x,x))
+	#Background
 
 class textattributes:
 	BLINKING='\x1b[5m'
