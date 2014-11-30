@@ -8,6 +8,8 @@ class colors:
 	CYAN = '\x1b[36m'
 	WHITE = '\x1b[37m'
 
+	BOLDRED='\x1b[1m'
+
 	BLACKBG='\x1b[40m'
 	REDBG = '\x1b[41m'
 	GREENBG = '\x1b[42m'
@@ -18,6 +20,11 @@ class colors:
 	WHITEBG = '\x1b[47m'		
 	
 	NOCOL = '\x1b[0m'
+
+class textattributes:
+	BLINKING='\x1b[5m'
+	UNDERLINED='\x1b[4m'
+	REVERSE_BGFB='\x1b[7m'
 
 def colorify(item,color,textonly=False):
 	if textonly:
@@ -54,4 +61,3 @@ def colorify(item,color,textonly=False):
 			return "%s%s%s%s"%(colors.CYAN,colors.CYANBG,item,colors.NOCOL)
 		elif color=="white":
 			return "%s%s%s%s"%(colors.WHITE,colors.WHITEBG,item,colors.NOCOL)
-			
