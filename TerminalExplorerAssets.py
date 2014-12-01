@@ -1,11 +1,11 @@
 from os import system
 import TerminalExplorerAIs
-from TerminalExplorerUtilities import colorify
+from TerminalExplorerUtilities import colorify,colorify_advanced
 
 class Player:
 
 
-	def __init__(self,x=0,y=0,name="A Player",solid=True):
+	def __init__(self,x=0,y=0,name="A Player",solid=True,color="cyan"):
 		self.type="Player"
 		self.x=x
 		self.y=y
@@ -13,6 +13,7 @@ class Player:
 		self.nearby=[]
 		self.relate={}
 		self.solid=solid
+		self.color=color
 
 
 	def move(self,bounds,x=0,y=0,*objects):
@@ -61,15 +62,16 @@ class Player:
 
 class Map:
 
-	def __init__(self, *objects, xscale=1, yscale=1, max_col=5, max_row=5):
+	def __init__(self, *objects, xscale=1, yscale=1, max_col=5, max_row=5,floorColor="black"):
 		self.positions=[]
 		self.xscale=xscale
 		self.yscale=yscale
 		self.bounds=(max_row*yscale,max_col*xscale)
+		self.floorColor=floorColor
 		for y in range(self.bounds[0]):
 			tempList=[]
 			for x in range(self.bounds[1]):
-				tempList.append([colorify("X","black")])
+				tempList.append([colorify("X",self.floorColor)])
 			self.positions.append(tempList)
 
 		print(self.bounds)
@@ -80,14 +82,14 @@ class Map:
 					if subItems.type=="Object":
 						self.positions[subItems.y][subItems.x]=[colorify("+",subItems.color)]
 					elif subItems.type=="Player":
-						self.positions[subItems.y][item.x]=[colorify("@","cyan")]
+						self.positions[subItems.y][item.x]=[colorify("@",subItems.color)]
 					elif subItems.type=="NPC":
 						self.positions[subItems.y][subItems.x]=[colorify("$",subItems.color)]
 			else:
 				if item.type=="Object":
 					self.positions[item.y][item.x]=[colorify("+",item.color)]
 				elif item.type=="Player":
-					self.positions[item.y][item.x]=[colorify("@","cyan")]
+					self.positions[item.y][item.x]=[colorify("@",item.color)]
 				elif item.type=="NPC":
 					self.positions[item.y][item.x]=[colorify("$",item.color)]
 
@@ -106,16 +108,16 @@ class Map:
 								if subItems.type=="Object":
 									self.positions[row][col]=[colorify("+",subItems.color)]
 								elif subItems.type=="Player":
-									self.positions[row][col]=[colorify("@","cyan")]
+									self.positions[row][col]=[colorify("@",subItems.color)]
 									#Code for player scaling
 									#for y in range(self.yscale):
 										#for x in range(self.xscale):
 											#self.positions[row+y][col+x]=["\x1b[46m\x1b[36m@\x1b[0m"]
 											#reserved_locations.append((row+y,col+x))
 								elif subItems.type=="NPC":
-									self.positions[row][col]=[colorify("$",subItems.color)]
+									self.positions[row][col]=[colorify_advanced("$",subItems.advancedColor)]
 							elif (row,col) not in reserved_locations:
-								self.positions[row][col]=[colorify("X","black")]
+								self.positions[row][col]=[colorify("X",self.floorColor)]
 			else:
 				for row in range(self.bounds[0]):
 					for col in range(self.bounds[1]):
@@ -124,16 +126,16 @@ class Map:
 							if item.type=="Object":
 								self.positions[row][col]=[colorify("+",item.color)]
 							elif item.type=="Player":
-								self.positions[row][col]=[colorify("@","cyan")]
+								self.positions[row][col]=[colorify("@",item.color)]
 								#Code for player scaling
 								#for y in range(self.yscale):
 									#for x in range(self.xscale):
 										#self.positions[row+y][col+x]=["\x1b[46m\x1b[36m@\x1b[0m"]
 										#reserved_locations.append((row+y,col+x))
 							elif item.type=="NPC":
-								self.positions[row][col]=[colorify("$",item.color)]
+								self.positions[row][col]=[colorify_advanced("$",item.advancedColor)]
 						elif (row,col) not in reserved_locations:
-							self.positions[row][col]=[colorify("X","black")]
+							self.positions[row][col]=[colorify("X",self.floorColor)]
 
 
 	def display(self):
@@ -144,19 +146,52 @@ class Map:
 			print()
 
 class NPC:
-	def __init__(self,name="An NPC",x=0,y=0,color="yellow",behavior="Wander",track=None,hp=100,hostile=False):
+	def __init__(self,name="An NPC",x=0,y=0,color="yellow",behavior="Wander",track=None,hp=100,hostile=False,advancedColor=118):
+		
+		#Pretty much alwats static
+		self.solid=True
+		self.type="NPC"
+
 		self.x=x
 		self.y=y
-		self.type="NPC"
 		self.name=name
 		self.behavior=behavior
-		self.solid=True
 		self.nearby=[]
 		self.relate={}
 		self.track=track
 		self.color=color
 		self.hp=hp
 		self.hostile=hostile
+		self.advancedColor=advancedColor
+	
+	def updateDefinition(self,name=None,x=None,y=None,color=None,behavior=None,track=None,hp=None,hostile=None):
+
+		if name!=None:
+			self.name=name
+		if behavior!=None:
+			self.behavior=behavior
+		if track!=None:
+			self.track=track
+		if color!=None:
+			self.color=color
+		if hp!=None:
+			self.hp=hp
+		if hostile!=None:
+			self.hostile=hostile
+
+	def cleanSlate(self,name="An NPC",color="yellow",behavior="Wander",track=None,hp=100,hostile=False):
+		self.name=name
+		self.behavior=behavior
+		self.nearby=[]
+		self.relate={}
+		self.track=track
+		self.color=color
+		self.hp=hp
+		self.hostile=hostile
+	
+	def teleport(self,x=0,y=0):
+		self.x=x
+		self.y=y
 
 	def move(self,bounds,*objects):
 		TerminalExplorerAIs.movement(self,bounds,objects)
@@ -171,7 +206,9 @@ class NPC:
 		#for key in self.relate.keys():
 			#print(key,self.relate[key])
 		if self.relate!={}:
-			if max(list(self.relate.values()))>=60 and not self.hostile:
+			if max(list(self.relate.values()))>=80 and not self.hostile:
+				self.cleanSlate()
+			elif max(list(self.relate.values()))>=60 and not self.hostile:
 				self.color="blue"
 				print( colorify(self,self.color,True), colorify(max(list(self.relate.values())),self.color,True) )
 			elif max(list(self.relate.values()))>=40 and not self.hostile:

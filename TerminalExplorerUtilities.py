@@ -89,3 +89,10 @@ def colorify(item,color,textonly=False):
 			return "%s%s%s%s"%(colors.CYAN,colors.CYANBG,item,colors.NOCOL)
 		elif color=="white":
 			return "%s%s%s%s"%(colors.WHITE,colors.WHITEBG,item,colors.NOCOL)
+
+def colorify_advanced(item,color,textonly=False):
+	if textonly:
+		return "\033[38;5;%sm%s\033[0;00m"%(color,item)
+	else:
+		return "\033[48;5;%sm\033[38;5;%sm%s\033[0;00m"%(color,color,item)
+
