@@ -10,6 +10,8 @@ def main():
 	points = []
 	randomSpawn=True
 
+	#Prompt user for a file name
+	#Use csvfile reader as 
 	with open(input("Filename: ")) as csvfile:
 		reader = csv.DictReader(csvfile)
 		for row in reader:
@@ -18,6 +20,7 @@ def main():
 
 	units=[]
 
+	#Create a unit to fill in each of the points found in the csv file
 	for element in points:
 		if randomSpawn:
 			units.append(NPC(x=randrange(0,19),y=randrange(0,19),behavior="Track",track=Point(element[0],element[1]),devMatter=True))
