@@ -10,7 +10,7 @@ def main():
 	points = []
 	randomSpawn=True
 
-	with open("model.csv") as csvfile:
+	with open(input("Filename: ")) as csvfile:
 		reader = csv.DictReader(csvfile)
 		for row in reader:
 			#print (row["x"],row["y"])
@@ -26,7 +26,10 @@ def main():
 
 	map=Map(units,xscale=1,yscale=1,max_row=20, max_col=20)
 
+	counter = 0
+
 	while(userInput!="quit"):
+		counter+=1
 
 		done=True
 
@@ -43,5 +46,6 @@ def main():
 		map.update(units)
 		map.display()
 
+	print("Completed in",counter,"turns.")
 
 main()

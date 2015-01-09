@@ -199,14 +199,18 @@ class NPC:
 
 	def move(self,bounds,*objects):
 		TerminalExplorerAIs.movement(self,bounds,objects)
+
+		#Tracking Settings
 		if self.x==self.track.x and self.y==self.track.y:
 			self.reached=True
+			#Programmable Matter Setting
 			if self.devMatter:
-				self.color="green"
+				self.advancedColor=46
 		else:
 			self.reached=False
+			#Programmable Matter Setting
 			if self.devMatter:
-				self.color="yellow"
+				self.advancedColor=226
 
 	def updateNearby(self,*objects):
 		self.nearby=TerminalExplorerAIs.findNearby(self,*objects)
@@ -242,7 +246,6 @@ class Object:
 		self.color=color
 
 class Point:
-
 	def __init__(self,x,y,solid=False):
 		self.x=x
 		self.y=y
