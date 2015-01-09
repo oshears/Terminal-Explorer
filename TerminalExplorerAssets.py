@@ -146,10 +146,10 @@ class Map:
 			print()
 
 class NPC:
-	def __init__(self,name="An NPC",x=0,y=0,color="yellow",behavior="Wander",track=None,hp=100,hostile=False,advancedColor=118):
+	def __init__(self,name="An NPC",x=0,y=0,color="yellow",behavior="Wander",track=None,hp=100,hostile=False,advancedColor=118,solid=True):
 		
 		#Pretty much alwats static
-		self.solid=True
+		self.solid=False
 		self.type="NPC"
 
 		self.x=x
@@ -188,6 +188,7 @@ class NPC:
 		self.color=color
 		self.hp=hp
 		self.hostile=hostile
+		self.reached=False
 	
 	def teleport(self,x=0,y=0):
 		self.x=x
@@ -195,6 +196,10 @@ class NPC:
 
 	def move(self,bounds,*objects):
 		TerminalExplorerAIs.movement(self,bounds,objects)
+		if self.x==self.track.x and self.y==self.track.y:
+			self.reached=True
+		else:
+			self.reached=False
 
 	def updateNearby(self,*objects):
 		self.nearby=TerminalExplorerAIs.findNearby(self,*objects)
@@ -228,5 +233,12 @@ class Object:
 		self.name=name
 		self.solid=solid
 		self.color=color
+
+class Point:
+
+	def __init__(self,x,y,solid=False):
+		self.x=x
+		self.y=y
+		self.solid=solid
 
 

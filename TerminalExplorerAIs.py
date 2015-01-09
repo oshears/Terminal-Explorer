@@ -211,6 +211,9 @@ def movement(self,bounds,objects):
 					self.y+=yMove
 				if self.y==bounds[0]-1 and yMove<0:
 					self.y+=yMove
+	elif self.behavior == "Still":
+		self.y=self.y
+		self.x=self.x
 
 
 def findNearby(self,*objects):
