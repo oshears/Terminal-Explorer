@@ -1,11 +1,14 @@
 from TerminalExplorerAssets import (Player,Map,NPC,Object,Point)
 from TerminalExplorerObjectGen import SqrObjectification,StarObjectification
 import csv
+from random import randrange
+
 
 
 def main():
 	userInput=""
 	points = []
+	randomSpawn=True
 
 	with open("model.csv") as csvfile:
 		reader = csv.DictReader(csvfile)
@@ -16,7 +19,10 @@ def main():
 	units=[]
 
 	for element in points:
-		units.append(NPC(x=0,y=0,behavior="Track",track=Point(element[0],element[1])))
+		if randomSpawn:
+			units.append(NPC(x=randrange(0,19),y=randrange(0,19),behavior="Track",track=Point(element[0],element[1]),devMatter=True))
+		else:
+			units.append(NPC(x=0,y=0,behavior="Track",track=Point(element[0],element[1]),devMatter=True))
 
 	map=Map(units,xscale=1,yscale=1,max_row=20, max_col=20)
 
